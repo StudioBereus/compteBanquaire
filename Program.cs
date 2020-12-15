@@ -57,7 +57,7 @@ namespace compteBanquaire
             }
             else
             {
-                this.balance -= _amount;
+                this.debiter(_amount);
                 account.crediter(_amount);
                 return true;
             }
