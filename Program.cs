@@ -24,6 +24,10 @@ namespace compteBanquaire
             this.balance = 0;
             this.overdraft = 0;
         }
+        public int Balance { get => balance; set => balance = value; }
+        public string Name { get => name; }
+        public int Id { get => id; }
+        public int Overdraft { get => overdraft; set => overdraft = value; }
         public override string ToString()
         {
            return "Id : " + this.id + "\nNom : " + this.name + "\nSolde : " + this.balance + "\nDécouvert autorisé : " + this.overdraft;
@@ -62,6 +66,17 @@ namespace compteBanquaire
                 return true;
             }
         }
+        public bool superieur(compte account)
+        {
+            if (balance < account.balance)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
     class program
     {
@@ -69,9 +84,14 @@ namespace compteBanquaire
         {
             compte client1 = new compte(12345, "Chems hoflack", 1000, -100);
             compte client2 = new compte(22345, "Machin Truc", 5000, -100);
-            client1.virement(client2, 100);
-            Console.WriteLine(client1.ToString());
-            Console.WriteLine(client2.ToString());
+            if (client1.superieur(client2))
+            {
+                Console.WriteLine("Supérieur");
+            }
+            else
+            {
+                Console.WriteLine("Inférieur");
+            }
         }
     }
 }
